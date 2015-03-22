@@ -1,0 +1,44 @@
+<h1 id="euphemism"></h1>
+
+<form id="next-euphemism">
+  <input type="submit" value="Next">
+  <input type="checkbox" id="aliterative" name="aliterative" value="true">
+  <label for="aliterative">Aliterative</label>
+</form>
+
+<script>
+  $(function () {
+    $("#next-euphemism").on('submit', function (e) {
+      e.preventDefault();
+
+      euphemism_type = this.elements.aliterative.checked ? "aliterative" : "random"
+
+      $.ajax({
+        url: "<%= random_euphemism_url %>",
+        dataType: "json",
+        data: {
+          euphemism_type: euphemism_type
+        },
+        success: function (data) {
+          $('#euphemism').text(
+            data.verb + " the " + data.adjective + " " + data.noun
+          );
+        }
+      });
+    });
+
+
+    $.ajax({
+      url: "<%= random_euphemism_url %>",
+      dataType: "json",
+      data: {
+        euphemism_type: 'random'
+      },
+      success: function (data) {
+        $('#euphemism').text(
+          data.verb + " the " + data.adjective + " " + data.noun
+        );
+      }
+    });
+  });
+</script>

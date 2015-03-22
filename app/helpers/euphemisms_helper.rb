@@ -1,0 +1,2 @@
+module EuphemismsHelper
+end
