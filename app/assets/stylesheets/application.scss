@@ -22,8 +22,8 @@ $primary-light: white;
 $primary-medium: darken($primary-bg, 40%);
 $primary-dark: black;
 
-$font-hand: "Rock Salt";
-$font-sans: "Roboto";
+$font-hand: "Rock Salt", cursive;
+$font-sans: "Roboto", sans-serif;
 
 * {
   box-sizing: border-box;
