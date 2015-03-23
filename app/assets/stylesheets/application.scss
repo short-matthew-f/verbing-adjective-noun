@@ -1,0 +1,122 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import url(http://fonts.googleapis.com/css?family=Rock+Salt|Roboto:300,700);
+
+$primary-bg: lightgreen;
+
+$primary-light: white;
+$primary-medium: darken($primary-bg, 40%);
+$primary-dark: black;
+
+$font-hand: "Rock Salt";
+$font-sans: "Roboto";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font: inherit;
+}
+
+*:after, *:before {
+  box-sizing: inherit;
+}
+
+body {
+  width: 60%;
+  min-width: 750px;
+
+  margin: 0 auto;
+
+  background: $primary-bg;
+
+  font-family: $font-sans;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 24px 0 12px 0;
+  text-align: center;
+}
+
+#current-euphemism {
+  visibility: hidden;
+  margin: 12px 0;
+  font-size: 24px;
+  font-family: $font-hand;
+  text-align: center;
+}
+
+#current-euphemism.active {
+  visibility: visible;
+}
+
+table {
+  width: 100%;
+
+  font-family: $font-sans, sans-serif;
+
+  th {
+    font-size: 24px;
+    font-weight: 700;
+    border-bottom: 2px solid $primary-light;
+  }
+
+  td {
+    font-size: 18px;
+    background: $primary-medium;
+    padding: 0.6em;
+    text-align: center;
+  }
+
+  td:hover {
+    background: lighten($primary-medium, 15%);
+    cursor: pointer;
+  }
+
+  td:active {
+    background: $primary-dark;
+    color: $primary-light;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  td.selected {
+    background: $primary-dark;
+    color: $primary-light;
+    font-weight: 700;
+  }
+
+  td.selected:hover {
+    background: lighten($primary-dark, 15%);
+    cursor: pointer;
+  }
+
+  td.selected:active {
+    background: $primary-medium;
+    color: $primary-dark;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+
+  td, th {
+    width: 33.3%;
+  }
+}

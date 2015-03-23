@@ -3,23 +3,30 @@ class Euphemism < ActiveRecord::Base
   belongs_to :adjective, foreign_key: :adjective_id
   belongs_to :noun, foreign_key: :noun_id
 
-  def self.random
-    v = Verb.order("RANDOM()").first
-    a = Adjective.order("RANDOM()").first
-    n = Noun.order("RANDOM()").first
+  def self.random(amount = 1)
+    v = Verb.order("RANDOM()").take(amount)
+    a = Adjective.order("RANDOM()").take(amount)
+    n = Noun.order("RANDOM()").take(amount)
 
-    Euphemism.new(verb: v, adjective: a, noun: n)
+    return {
+      verbs: v,
+      adjectives: a,
+      nouns: n
+    }
   end
 
-  def self.aliterative
-    v = Verb.order("RANDOM()").first
-    a = Adjective.order("RANDOM()").where("content LIKE '" + v.content[0] + "%'").first
-    n = Noun.order("RANDOM()").where("content LIKE '" + v.content[0] + "%'").first
+  def self.consonance(amount = 1)
+    letters = ('a'..'z').to_a - ['x']
+    leading_letter = letters.sample
 
-    Euphemism.new(verb: v, adjective: a, noun: n)
-  end
+    v = Verb.order("RANDOM()").where("content LIKE '" + leading_letter + "%'").take(amount)
+    a = Adjective.order("RANDOM()").where("content LIKE '" + leading_letter + "%'").take(amount)
+    n = Noun.order("RANDOM()").where("content LIKE '" + leading_letter + "%'").take(amount)
 
-  def to_s
-    "#{self.verb.content} the #{self.adjective.content} #{self.noun.content}"
+    return {
+      verbs: v,
+      adjectives: a,
+      nouns: n
+    }
   end
 end

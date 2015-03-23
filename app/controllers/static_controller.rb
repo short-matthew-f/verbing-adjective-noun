@@ -1,7 +1,7 @@
 class StaticController < ApplicationController
 
   def home
-    @euphemism = Euphemism.random
+    @euphemisms = Euphemism.random(3)
   end
 
 end

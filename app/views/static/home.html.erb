@@ -1,17 +1,94 @@
-<h1 id="euphemism"></h1>
+<h1>Let's make a new euphemism!</h1>
+
+<h3 id="current-euphemism">
+  <span id="verb"></span>
+  <span id="the">the</span>
+  <span id="adjective"></span>
+  <span id="noun"></span>
+</h3>
+
+<table id="candidates">
+  <tr>
+    <th>
+      Verb
+    </th>
+    <th>
+      Adjective
+    </th>
+    <th>
+      Noun
+    </th>
+  </tr>
+</table>
 
 <form id="next-euphemism">
   <input type="submit" value="Next">
-  <input type="checkbox" id="aliterative" name="aliterative" value="true">
-  <label for="aliterative">Aliterative</label>
+  <input type="checkbox" id="consonance" name="consonance" value="true">
+  <label for="consonance">consonance</label>
 </form>
 
 <script>
   $(function () {
+    $('#candidates').on('click', 'td', function (e) {
+      $('#current-euphemism').addClass('active');
+
+      var $td = $(this);
+
+      console.log($td.text())
+
+      $.each(["verb", "adjective", "noun"], function (i, part) {
+        if ($td.hasClass(part)) {
+          $("." + part).removeClass("selected");
+          $("#" + part).text( $td.text() );
+        };
+      });
+
+      $td.addClass("selected");
+    });
+
+    function renderEuphemisms (euphemisms) {
+      var verbs = euphemisms.verbs;
+      var adjectives = euphemisms.adjectives;
+      var nouns = euphemisms.nouns;
+      var rowCount = Math.max(verbs.length, adjectives.length, nouns.length);
+
+      var $table = $("#candidates");
+
+      $('.entry').remove();
+      $('#verb, #adjective, #noun').text('');
+
+      for (var i = 0; i < rowCount; i++) {
+        var $row = $("<tr class='entry'>");
+
+        if (verbs[i]) {
+          var $verb = $("<td class='verb'>").text(verbs[i].content);
+        } else {
+          var $verb = $("<td>");
+        };
+
+        if (adjectives[i]) {
+          var $adjective = $("<td class='adjective'>").text(adjectives[i].content);
+        } else {
+          var $adjective = $("<td>");
+        };
+
+        if (nouns[i]) {
+          var $noun = $("<td class='noun'>").text(nouns[i].content);
+        } else {
+          var $noun = $("<td>");
+        };
+
+        $row.append( $verb ).append( $adjective ).append( $noun );
+
+        $table.append( $row );
+      };
+    };
+
+
     $("#next-euphemism").on('submit', function (e) {
       e.preventDefault();
 
-      euphemism_type = this.elements.aliterative.checked ? "aliterative" : "random"
+      euphemism_type = this.elements.consonance.checked ? "consonance" : "random"
 
       $.ajax({
         url: "<%= random_euphemism_url %>",
@@ -19,26 +96,17 @@
         data: {
           euphemism_type: euphemism_type
         },
-        success: function (data) {
-          $('#euphemism').text(
-            data.verb + " the " + data.adjective + " " + data.noun
-          );
-        }
+        success: renderEuphemisms
       });
     });
-
 
     $.ajax({
       url: "<%= random_euphemism_url %>",
       dataType: "json",
       data: {
-        euphemism_type: 'random'
+        euphemism_type: "random"
       },
-      success: function (data) {
-        $('#euphemism').text(
-          data.verb + " the " + data.adjective + " " + data.noun
-        );
-      }
+      success: renderEuphemisms
     });
   });
 </script>
