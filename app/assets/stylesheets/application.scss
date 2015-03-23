@@ -14,13 +14,15 @@
  *= require_self
  */
 
+@import url("http://fonts.googleapis.com/css?family=Cutive+Mono|Roboto:300,700");
+
 $primary-bg: lightgreen;
 
 $primary-light: white;
 $primary-medium: darken($primary-bg, 40%);
 $primary-dark: black;
 
-$font-hand: "Rock Salt", cursive;
+$font-hand: "Cutive Mono", monospace;
 $font-sans: "Roboto", sans-serif;
 
 * {
@@ -121,8 +123,77 @@ table {
     cursor: pointer;
   }
 
-
   td, th {
-    width: 33.3%;
+    width: 33.333%;
+  }
+}
+
+form {
+  margin-top: 1em;
+
+  input[type='submit'] {
+    padding: 0.5em;
+    background: $primary-medium;
+
+    &:hover {
+      cursor: pointer;
+      background: lighten($primary-medium, 15%);
+    }
+  }
+
+  &#get-more-choices {
+    width: 66%;
+
+    float: left;
+    margin-left: 2px;
+
+    input[type='checkbox'] {
+      display: none;
+
+      + label {
+        padding: 0.5em;
+        background: $primary-medium;
+
+        &:hover {
+          cursor: pointer;
+          background: lighten($primary-medium, 15%);
+        }
+
+        &:before {
+          content: "Without ";
+        }
+
+        &:after {
+          content: " :(";
+        }
+      }
+    }
+
+    input[type='checkbox']:checked {
+      display: none;
+
+      + label {
+        padding: 0.5em;
+        background: lighten($primary-medium, 15%);
+
+        &:hover {
+          cursor: pointer;
+          background: lighten($primary-medium, 10%);
+        }
+
+        &:before {
+          content: "With "
+        }
+
+        &:after {
+          content: "! :)";
+        }
+      }
+    }
+  }
+
+  &#create-euphemism {
+    float: right;
+    margin-right: 2px;
   }
 }
