@@ -16,10 +16,10 @@
 
 @import url("http://fonts.googleapis.com/css?family=Cutive+Mono|Roboto:300,700");
 
-$primary-bg: lightgreen;
+$primary-bg: lighten(pink, 10%);
 
 $primary-light: white;
-$primary-medium: darken($primary-bg, 40%);
+$primary-medium: darken($primary-bg, 30%);
 $primary-dark: black;
 
 $font-hand: "Cutive Mono", monospace;
@@ -174,11 +174,15 @@ form {
 
       + label {
         padding: 0.5em;
-        background: lighten($primary-medium, 15%);
+
+        background: $primary-dark;
+        color: $primary-light;
+
+        font-weight: bold;
 
         &:hover {
           cursor: pointer;
-          background: lighten($primary-medium, 10%);
+          background: lighten($primary-dark, 20%);
         }
 
         &:before {
