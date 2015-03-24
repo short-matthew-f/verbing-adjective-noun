@@ -1,14 +1,10 @@
 class EuphemismsController < ApplicationController
+  def new
 
-  def random
-    @euphemisms = (params[:euphemism_type] == "random") ? Euphemism.random(5) : Euphemism.consonance(5)
-
-    render json: @euphemisms
   end
 
   def create
     @euphemism = Euphemism.find_or_create_by(euphemism_params)
-
     render json: @euphemism
   end
 

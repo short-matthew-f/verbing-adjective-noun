@@ -31,6 +31,7 @@ $font-sans: "Roboto", sans-serif;
   border: 0;
   padding: 0;
   font: inherit;
+  outline: none;
 }
 
 *:after, *:before {
@@ -38,13 +39,9 @@ $font-sans: "Roboto", sans-serif;
 }
 
 body {
-  width: 60%;
-  min-width: 750px;
-
+  width: 600px;
   margin: 0 auto;
-
   background: $primary-bg;
-
   font-family: $font-sans;
   font-weight: 300;
 }
@@ -55,149 +52,125 @@ h1 {
   text-align: center;
 }
 
-#current-euphemism {
-  visibility: hidden;
+h3 {
+  text-align: center;
   margin: 12px 0;
   font-size: 24px;
   font-family: $font-hand;
-  text-align: center;
 }
 
-#current-euphemism.active {
-  visibility: visible;
-}
+ul { list-style: none; }
 
-#create-euphemism {
-  visibility: hidden;
-}
-
-#create-euphemism.active {
-  visibility: visible;
-}
-
-table {
+#candidates {
   width: 100%;
-
   font-family: $font-sans, sans-serif;
 
   th {
+    width: 33.333%;
     font-size: 24px;
     font-weight: 700;
+    padding: 0.25em 0;
     border-bottom: 2px solid $primary-light;
+    cursor: pointer;
+    &:hover {
+      background: darken($primary-bg, 5%);
+    }
+    &:active {
+      background: darken($primary-bg, 10%);
+    }
   }
 
-  td {
+  li {
+    height: 38px;
     font-size: 18px;
+    padding: 10px;
     background: $primary-medium;
-    padding: 0.6em;
     text-align: center;
-  }
-
-  td:hover {
-    background: lighten($primary-medium, 15%);
     cursor: pointer;
-  }
 
-  td:active {
-    background: $primary-dark;
-    color: $primary-light;
-    font-weight: 700;
-    cursor: pointer;
-  }
+    &:hover { background: lighten($primary-medium, 15%); }
+    &:active {
+      background: $primary-dark;
+      color: $primary-light;
+      font-weight: 700;
+    }
 
-  td.selected {
-    background: $primary-dark;
-    color: $primary-light;
-    font-weight: 700;
-  }
+    &.selected {
+      background: $primary-dark;
+      color: $primary-light;
+      font-weight: 700;
 
-  td.selected:hover {
-    background: lighten($primary-dark, 15%);
-    cursor: pointer;
-  }
-
-  td.selected:active {
-    background: $primary-medium;
-    color: $primary-dark;
-    font-weight: 700;
-    cursor: pointer;
-  }
-
-  td, th {
-    width: 33.333%;
+      &:hover { background: lighten($primary-dark, 15%); }
+      &:active {
+        background: $primary-medium;
+        color: $primary-dark;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    }
+    + li { margin-top: 2px; }
   }
 }
 
-form {
-  margin-top: 1em;
+.button {
+  font-size: 18px;
+  background: $primary-medium;
+  padding: 0.6em;
+  text-align: center;
+  cursor: pointer;
 
-  input[type='submit'] {
-    padding: 0.5em;
-    background: $primary-medium;
+  &:hover { background: lighten($primary-medium, 15%); }
+  &:active {
+    background: $primary-dark;
+    color: $primary-light;
+    font-weight: 700;
+  }
 
-    &:hover {
+  &.selected {
+    background: $primary-dark;
+    color: $primary-light;
+    font-weight: 700;
+
+    &:hover { background: lighten($primary-dark, 15%); }
+    &:active {
+      background: $primary-medium;
+      color: $primary-dark;
+      font-weight: 700;
       cursor: pointer;
-      background: lighten($primary-medium, 15%);
     }
   }
+}
 
-  &#get-more-choices {
-    width: 66%;
 
-    float: left;
-    margin-left: 2px;
+#creation-nav {
+  margin-top: 1em;
+  margin-left: 2px;
+  margin-right: 2px;
 
-    input[type='checkbox'] {
-      display: none;
-
-      + label {
-        padding: 0.5em;
-        background: $primary-medium;
-
-        &:hover {
-          cursor: pointer;
-          background: lighten($primary-medium, 15%);
-        }
-
-        &:before {
-          content: "Without ";
-        }
-
-        &:after {
-          content: " :(";
-        }
-      }
-    }
-
-    input[type='checkbox']:checked {
-      display: none;
-
-      + label {
-        padding: 0.5em;
-
-        background: $primary-dark;
-        color: $primary-light;
-
-        font-weight: bold;
-
-        &:hover {
-          cursor: pointer;
-          background: lighten($primary-dark, 20%);
-        }
-
-        &:before {
-          content: "With "
-        }
-
-        &:after {
-          content: "! :)";
-        }
-      }
-    }
+  &:after {
+    clear: both;
+    display: block;
+    content: "";
   }
 
-  &#create-euphemism {
+  #refresh-words { float: left; }
+  #set-consonance {
     float: right;
-    margin-right: 2px;
+    &:after {
+      content: "?";
+    }
+    &.selected:after {
+      content: "!";
+    }
   }
+
+  .button {
+    width: 40%;
+  }
+}
+
+#create-euphemism {
+  display: none;
+  width: 75%;
+  margin: 1em auto;
 }
