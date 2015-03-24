@@ -60,7 +60,7 @@ function renderWords (partOfSpeech) {
 };
 
 function validEuphemism () {
-  return Object.keys(euphemism).length == 3;``
+  return Object.keys(euphemism).length == 3;
 }
 
 function allowSubmit () {
@@ -129,5 +129,5 @@ $(function () {
         }
       });
     }
-  })
+  });
 });
