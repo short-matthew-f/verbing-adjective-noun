@@ -1,13 +1,14 @@
-<h3 id="current-euphemism">
-  <%= @euphemism.to_s %>
+<h3 id="vote-target">
 </h3>
 
-<div id="like-euphemism">
-  I like it!
-</div>
+<div id="vote-nav">
+  <div id="like" class="button">
+    I like it!
+  </div>
 
-<div id="next-euphemism">
-  Next, please!
+  <div id="next" class="button">
+    Next, please!
+  </div>
 </div>
 
 <%= javascript_include_tag "euphemisms.js" %>

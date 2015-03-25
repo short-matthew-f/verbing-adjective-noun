@@ -174,3 +174,31 @@ ul { list-style: none; }
   width: 75%;
   margin: 1em auto;
 }
+
+#vote-target {
+  width: 100%;
+  font-size: 28px;
+  font-family: $font-hand;
+  text-align: center;
+  margin: 56px 0 28px 0;
+}
+
+#vote-nav {
+  &:after {
+    clear: both;
+    display: block;
+    content: "";
+  }
+
+  div {
+    width: 40%;
+  }
+
+  #like {
+    float: left;
+  }
+
+  #next {
+    float: right;
+  }
+}

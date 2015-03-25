@@ -3,6 +3,8 @@ class Euphemism < ActiveRecord::Base
   belongs_to :adjective, foreign_key: :adjective_id
   belongs_to :noun, foreign_key: :noun_id
 
+  has_many :votes
+
   def self.random(count = 1)
     self.order("RANDOM()").take(count)
   end

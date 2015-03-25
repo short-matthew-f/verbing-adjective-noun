@@ -1,11 +1,19 @@
 class EuphemismsController < ApplicationController
   def index
     @user = current_user
-    @euphemism = Euphemism.random.first
   end
 
-  def fetch_euphemism
+  def fetch
     @user = current_user
+    @euphemism = Euphemism.order('RANDOM()')
+                          .where.not(id: @user.judgement_ids)
+                          .first
+    render json: {
+      euphemism: {
+        id: @euphemism.id,
+        content: @euphemism.to_s
+      }
+    }
   end
 
   def create
