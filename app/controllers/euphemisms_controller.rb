@@ -4,6 +4,10 @@ class EuphemismsController < ApplicationController
     @euphemism = Euphemism.random.first
   end
 
+  def fetch_euphemism
+    @user = current_user
+  end
+
   def create
     @euphemism = Euphemism.find_or_create_by(euphemism_params)
     render json: @euphemism
