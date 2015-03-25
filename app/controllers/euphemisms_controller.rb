@@ -1,6 +1,7 @@
 class EuphemismsController < ApplicationController
-  def new
-
+  def index
+    @user = current_user
+    @euphemism = Euphemism.random.first
   end
 
   def create

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322172002) do
+ActiveRecord::Schema.define(version: 20150325102434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,24 @@ ActiveRecord::Schema.define(version: 20150322172002) do
   end
 
   add_index "euphemisms", ["verb_id", "adjective_id", "noun_id"], name: "index_euphemisms_on_verb_id_and_adjective_id_and_noun_id", unique: true, using: :btree
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id",      null: false
+    t.integer  "euphemism_id", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "likes", ["euphemism_id"], name: "index_likes_on_euphemism_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "token",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "users", ["token"], name: "index_users_on_token", using: :btree
 
   create_table "words", force: :cascade do |t|
     t.string   "part_of_speech", null: false
