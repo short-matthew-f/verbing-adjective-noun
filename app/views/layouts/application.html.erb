@@ -7,6 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav>
+    <a href="/euphemisms/new">
+      <div class="button">
+        Make Euphemisms
+      </div>
+    </a>
+
+    <a href="/euphemisms">
+      <div class="button">
+        Vote on Euphemisms
+      </div>
+    </a>
+    <a href="/euphemisms/popular">
+      <div class="button">
+        Popular Euphemisms
+      </div>
+    </a>
+  </nav>
   <%= yield %>
 </body>
 </html>

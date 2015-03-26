@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325163132) do
+ActiveRecord::Schema.define(version: 20150326002124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "euphemisms", force: :cascade do |t|
-    t.integer  "verb_id",      null: false
-    t.integer  "adjective_id", null: false
-    t.integer  "noun_id",      null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "verb_id",                  null: false
+    t.integer  "adjective_id",             null: false
+    t.integer  "noun_id",                  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "like_count",   default: 0
   end
 
   add_index "euphemisms", ["verb_id", "adjective_id", "noun_id"], name: "index_euphemisms_on_verb_id_and_adjective_id_and_noun_id", unique: true, using: :btree

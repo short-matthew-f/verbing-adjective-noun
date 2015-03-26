@@ -184,6 +184,8 @@ ul { list-style: none; }
 }
 
 #vote-nav {
+  display: none;
+
   &:after {
     clear: both;
     display: block;
@@ -200,5 +202,30 @@ ul { list-style: none; }
 
   #next {
     float: right;
+  }
+}
+
+nav {
+  &:after {
+    clear: both;
+    display: block;
+    content: '';
+  }
+
+  .button {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  margin-top: 0;
+
+  div {
+    float: left;
+    width: 33.3%;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
   }
 }
